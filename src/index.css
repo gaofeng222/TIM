@@ -1,0 +1,16 @@
+:root {
+  --background: rgb(161, 161, 243);
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-color: var(--background) !important; /* 设置背景颜色为#ccc */
+}
+
+#app {
+  height: 100%;
+  overflow: hidden;
+}
