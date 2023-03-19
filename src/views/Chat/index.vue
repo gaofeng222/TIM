@@ -9,7 +9,7 @@
     </div>
     <div class="chat" v-show="!env?.isH5 || currentModel === 'message'">
       <TUIChat>
-        <h1>欢迎使用腾讯云即时通信IM</h1>
+        <h1>欢迎{{ username }}使用腾讯云即时通信IM</h1>
       </TUIChat>
     </div>
   </div>
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
 import { TUIEnv } from '@/TUIKit/TUIPlugin'
-
+import { useUsersStore } from '@/store/use'
 export default defineComponent({
   name: 'App',
   setup() {
@@ -26,11 +26,15 @@ export default defineComponent({
       env: TUIEnv(),
       currentModel: 'conversation'
     })
+    const useStore = useUsersStore()
+    console.log('useStore', useStore)
+    const { username } = useStore
     const handleCurrentConversation = (value: string) => {
       data.currentModel = value ? 'message' : 'conversation'
     }
     return {
       ...toRefs(data),
+      username,
       handleCurrentConversation
     }
   }
